@@ -6,11 +6,11 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 15:39:29 by gkehren           #+#    #+#              #
-#    Updated: 2022/08/03 15:42:37 by gkehren          ###   ########.fr        #
+#    Updated: 2022/08/04 17:14:31 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES:=	philo
+FILES:=	philo utils
 FILES_BONUS:=
 
 NAME:= philo
@@ -24,7 +24,7 @@ HDRPATH:=include/
 CCHPATH:=obj/
 CCHPATH_BONUS:=obj/
 IFLAGS:=-I ${HDRPATH}
-CFLAGS:=-Wall -Wextra -Werror -g3 ${IFLAGS}
+CFLAGS:=-Wall -Wextra -Werror -g3 -pthread ${IFLAGS}
 # ==================
 
 # ----- Colors -----
