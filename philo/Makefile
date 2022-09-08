@@ -6,11 +6,11 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 15:39:29 by gkehren           #+#    #+#              #
-#    Updated: 2022/08/04 17:14:31 by gkehren          ###   ########.fr        #
+#    Updated: 2022/09/09 01:33:07 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES:=	philo utils
+FILES:=	philo init utils
 FILES_BONUS:=
 
 NAME:= philo
