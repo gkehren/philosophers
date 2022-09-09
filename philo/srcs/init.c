@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 01:32:00 by gkehren           #+#    #+#             */
-/*   Updated: 2022/09/09 01:49:17 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/09/09 13:40:24 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ int	init(t_param *param, char **argv)
 	param->all_eat = 0;
 	if (param->nb_philo < 2 || param->time_die < 0 || param->time_eat < 0
 		|| param->time_sleep < 0 || param->nb_philo > 250)
-		return (1);
+		return (write(2, "Error: incorrect argument\n", 27), 1);
 	if (argv[5])
 	{
 		param->nb_eat = ft_atoi(argv[5]);
 		if (param->nb_eat <= 0)
-			return (1);
+			return (write(2, "Error: incorrect argument\n", 27), 1);
 	}
 	else
 		param->nb_eat = -1;
 	if (init_mutex(param))
-		return (2);
+		return (write(2, "Error: error when intializing mutex\n", 37), 1);
 	init_philo(param);
 	return (0);
 }
