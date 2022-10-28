@@ -6,13 +6,25 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 01:32:00 by gkehren           #+#    #+#             */
-/*   Updated: 2022/09/09 13:40:24 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/28 18:07:42 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-/* 250 is the fork limit (see ulimit -u) */
+void	destroy_mutex(t_param	*param)
+{
+	int	i;
+
+	i = 0;
+	while (i < param->nb_philo)
+	{
+		pthread_mutex_destroy(&(param->forks[i].mutex));
+		i++;
+	}
+	pthread_mutex_destroy(&(param->writing.mutex));
+	pthread_mutex_destroy(&(param->meal_check.mutex));
+}
 
 int	init_mutex(t_param *param)
 {
@@ -21,13 +33,16 @@ int	init_mutex(t_param *param)
 	i = 0;
 	while (i < param->nb_philo)
 	{
-		if (pthread_mutex_init(&(param->forks[i]), NULL))
+		param->forks[i].data = 0;
+		if (pthread_mutex_init(&(param->forks[i].mutex), NULL))
 			return (1);
 		i++;
 	}
-	if (pthread_mutex_init(&(param->writing), NULL))
+	param->writing.data = 0;
+	if (pthread_mutex_init(&(param->writing.mutex), NULL))
 		return (1);
-	if (pthread_mutex_init(&(param->meal_check), NULL))
+	param->meal_check.data = 0;
+	if (pthread_mutex_init(&(param->meal_check.mutex), NULL))
 		return (1);
 	return (0);
 }
@@ -39,15 +54,15 @@ int	init_philo(t_param *param)
 	i = 0;
 	while (i < param->nb_philo)
 	{
-		param->philo[i].fork = i;
+		param->philo[i].id = i;
 		param->philo[i].check_eat = 0;
 		param->philo[i].last_eat = 0;
 		if (i == 0)
-			param->philo[i].left_fork = param->nb_philo - 1;
+			param->philo[i].left_id = param->nb_philo - 1;
 		else
-			param->philo[i].left_fork = i - 1;
-		param->philo[i].right_fork = (i + 1) % param->nb_philo;
-		param->philo[i].param = param;
+			param->philo[i].left_id = i - 1;
+		param->philo[i].right_id = (i + 1) % param->nb_philo;
+		//param->philo[i].param = param;
 		i++;
 	}
 	return (0);

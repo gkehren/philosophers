@@ -6,23 +6,19 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 15:39:29 by gkehren           #+#    #+#              #
-#    Updated: 2022/09/09 01:33:07 by gkehren          ###   ########.fr        #
+#    Updated: 2022/10/28 17:14:40 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES:=	philo init utils
-FILES_BONUS:=
 
 NAME:= philo
-BONUS:= philo_bonus
 
 # ------------------
 CC:=clang
 SRCPATH:=srcs/
-BONUSPATH:=bonus/
 HDRPATH:=include/
 CCHPATH:=obj/
-CCHPATH_BONUS:=obj/
 IFLAGS:=-I ${HDRPATH}
 CFLAGS:=-Wall -Wextra -Werror -g3 -pthread ${IFLAGS}
 # ==================
@@ -39,9 +35,7 @@ EOC:="\033[0;0m"
 
 # ------ Auto ------
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
-SRC_BONUS:=$(addprefix $(BONUSPATH),$(addsuffix .c,$(FILES_BONUS)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
-OBJ_BONUS:=$(addprefix $(CCHPATH_BONUS),$(addsuffix .o,$(FILES_BONUS)))
 # ==================
 CCHF:=.cache_exists
 
@@ -56,15 +50,6 @@ ${CCHPATH}%.o: ${SRCPATH}%.c | ${CCHF}
 	@echo ${PURPLE} " - Compiling $< into $@" ${EOC}
 	@${CC} ${CFLAGS} -c $< -o $@
 
-#${BONUS}: ${OBJ_BONUS}
-#	@echo ${CYAN} " - Compiling $@" $(RED)
-#	@${CC} ${CFLAGS} ${SRC_BONUS} -o ${BONUS}
-#	@echo $(GREEN) " - OK" $(EOC)
-
-#${CCHPATH_BONUS}%.o: ${BONUSPATH}%.c | ${CCHF}
-#	@echo ${PURPLE} " - Compiling $< into $@" ${EOC}
-#	@${CC} ${CFLAGS} -c $< -o $@
-
 %.c:
 	@echo ${RED}"Missing file : $@" ${EOC}
 
@@ -78,9 +63,7 @@ clean:
 
 fclean:	clean
 	@rm -f ${NAME}
-	@rm -f ${BONUS}
 	@rm -rf ${NAME}.dSYM/
-	@rm -rf ${BONUS}.dSYM/
 
 re:	fclean
 	@${MAKE} all
