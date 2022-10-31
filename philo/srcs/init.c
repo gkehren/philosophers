@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 01:32:00 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 14:13:48 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 17:17:36 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	init_mutex(t_table *table)
 	i = 0;
 	table->fork = malloc(sizeof(pthread_mutex_t) * table->num_of_philos);
 	if (!table->fork)
-		return (/*write(2, "Error: malloc error\n", 27), */1);
+		return (write(2, "Error: malloc error\n", 27), 1);
 	while (i < table->num_of_philos)
 	{
 		pthread_mutex_init(&table->fork[i], NULL);
@@ -37,7 +37,7 @@ static int	init_philo(t_philo **philo, t_table *table)
 	i = 0;
 	(*philo) = malloc(sizeof(t_philo) * table->num_of_philos);
 	if ((!*philo))
-		return (/*write(2, "Error: malloc error\n", 27), */1);
+		return (write(2, "Error: malloc error\n", 27), 1);
 	while (i < table->num_of_philos)
 	{
 		(*philo)[i].table = table;

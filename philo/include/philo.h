@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:39:59 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 14:19:45 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 17:20:25 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,9 @@ typedef struct s_philo
 /*******PHILO*******/
 
 int		init(t_philo **philo, t_table *table, char **argv);
-
-/*******STATE*******/
-
-void	print_state(t_philo *philo, int status);
-void	set_state(t_philo *philo);
+void	*routine(void *arg);
 void	*is_spotless(void *arg);
+void	print_state(t_philo *philo, int status);
 
 /*******TIME*******/
 
@@ -83,6 +80,5 @@ long	get_time_interval(long old_timestamp);
 /*******UTILS*******/
 
 int		ft_atoi(const char *str);
-void	free_double_tab(void **ptr);
 
 #endif

@@ -6,11 +6,11 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 15:39:29 by gkehren           #+#    #+#              #
-#    Updated: 2022/10/31 16:53:49 by gkehren          ###   ########.fr        #
+#    Updated: 2022/10/31 17:20:35 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES:=	philo init utils state waiter
+FILES:=	philo init utils state waiter routine
 
 NAME:= philo
 
