@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:40:19 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 11:31:26 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 11:42:24 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	*routine(void *arg)
 
 void	philosopher(t_philo *philo)
 {
-	int			err;
-	int			i;
+	int	err;
+	int	i;
 
 	i = 0;
 	printf("---------- Avant ----------\n");
@@ -37,7 +37,8 @@ void	philosopher(t_philo *philo)
 	{
 		err = pthread_create(&philo->thread, NULL, routine, &philo[i]);
 		if (err != 0)
-			return (printf("Failed to create the thread: [%s]", strerror(err)), exit(1));
+			return (printf("Failed to create the thread: [%s]",
+					strerror(err)), exit(1));
 		i++;
 	}
 	i = 0;
@@ -52,12 +53,12 @@ void	philosopher(t_philo *philo)
 int	main(int argc, char **argv)
 {
 	t_philo	*philo;
-	t_table table;
+	t_table	table;
 
 	if (argc != 5 && argc != 6)
 		return (write(2, "Wrong number of arguments !\n", 29), 1);
 	if (init(&philo, &table, argv) == 1)
-		return(1);
+		return (1);
 	philosopher(philo);
 	return (0);
 }

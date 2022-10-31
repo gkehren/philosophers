@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 16:15:48 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 11:30:41 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 11:41:28 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,20 @@ long	get_time_interval(long old_timestamp)
 void	print_state(t_philo *philo)
 {
 	if (philo->status == HAS_TAKEN_A_FORK)
-		printf("%ld %d has taken a fork\n", get_time_interval(philo->table->timer), philo->philo_num);
+		printf("%ld %d has taken a fork\n",
+			get_time_interval(philo->table->timer), philo->philo_num);
 	else if (philo->status == EATING)
-		printf("%ld %d is eating\n",get_time_interval(philo->table->timer), philo->philo_num);
+		printf("%ld %d is eating\n",
+			get_time_interval(philo->table->timer), philo->philo_num);
 	else if (philo->status == SLEEPING)
-		printf("%ld %d is sleeping\n", get_time_interval(philo->table->timer), philo->philo_num);
+		printf("%ld %d is sleeping\n",
+			get_time_interval(philo->table->timer), philo->philo_num);
 	else if (philo->status == THINKING)
-		printf("%ld %d is thinking\n", get_time_interval(philo->table->timer), philo->philo_num);
+		printf("%ld %d is thinking\n",
+			get_time_interval(philo->table->timer), philo->philo_num);
 	else if (philo->status == DIED)
-		printf("%ld %d died\n", get_time_interval(philo->table->timer), philo->philo_num);
+		printf("%ld %d died\n",
+			get_time_interval(philo->table->timer), philo->philo_num);
 }
 
 void	set_state(t_philo *philo)
