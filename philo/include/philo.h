@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:39:59 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/28 18:18:17 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 10:51:16 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,53 +24,59 @@
 
 /*******STRUCT*******/
 
-// pour les fourchettes forks[250] cela signifie que il faut aller de 0 à nb_forks
-// puis check si forks.data == 0
-// si forks.data == 0 alors fourchette est dispo
-// sinon forks.data == 1 et elle n'est pas dispo donc le philo ne peut pas manger
+enum e_state {
+	EATING,
+	SLEEPING,
+	THINKING,
+	HAS_TAKEN_A_FORK,
+	DIED
+};
 
-// Ordre des actions : manger -> dormir -> penser
+typedef struct s_waiter
+{
+	pthread_t	thread;
+	int			sink_capacity;
+	int			close_the_place;
+}				t_waiter;
 
-// Dans le cas ou il y aurait 3 philo
-// philo[0] = manger
-// philo[1] = penser (car il ne peut pas manger, la fourchette est utilisé par philo[0])
-
-
-typedef struct s_mutex_data {
-	int data;
-	pthread_mutex_t mutex;
-}	t_mutex;
+typedef struct s_table
+{
+	pthread_mutex_t	*fork;
+	pthread_mutex_t	meals_count_access;
+	pthread_mutex_t	microphone;
+	t_waiter		waiter;
+	int				num_of_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				times_must_eat;
+	long			timer;
+}				t_table;
 
 typedef struct s_philo
 {
-	int				id;
-	int				check_eat;
-	int				left_id;
-	int				right_id;
-	long long		last_eat;
+	t_table			*table;
 	pthread_t		thread;
-}	t_philo;
+	pthread_mutex_t	*left_hand;
+	pthread_mutex_t	*right_hand;
+	int				philo_num;
+	int				meals_count;
+	int				status;
+	long			last_meal;
+}				t_philo;
 
-typedef struct s_param
-{
-	int					nb_philo;
-	int					time_die;
-	int					time_eat;
-	int					time_sleep;
-	int					nb_eat;
-	int					all_dead;
-	int					all_eat;
-	long long			first_time_stamp;
-	t_mutex				meal_check;
-	t_mutex				forks[250];
-	t_mutex				writing;
-	t_philo				philo[250];
-}	t_param;
+/*******STATE*******/
+
+void	print_state(t_philo *philo);
+void	set_state(t_philo *philo);
+
+/*******TIME*******/
+
+long	get_timestamp(void);
 
 /*******UTILS*******/
 
 int		ft_atoi(const char *str);
-int		init(t_param *param, char **argv);
-void	destroy_mutex(t_param	*param);
+int		init(t_philo **philo, t_table *table, char **argv);
 
 #endif
