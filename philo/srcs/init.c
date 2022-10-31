@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 01:32:00 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 10:58:46 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 11:06:33 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ int	init(t_philo **philo, t_table *table, char **argv)
 	if (init_mutex(table))
 		return (1);
 	if (init_philo(philo, table) == 1)
-		return (1);
+		return (free(table->fork), 1);
 	return (0);
 }

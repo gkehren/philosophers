@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:39:59 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 10:51:16 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 11:23:23 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	set_state(t_philo *philo);
 /*******TIME*******/
 
 long	get_timestamp(void);
+long	get_time_interval(long old_timestamp);
 
 /*******UTILS*******/
 
