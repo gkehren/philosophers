@@ -6,7 +6,7 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 15:39:29 by gkehren           #+#    #+#              #
-#    Updated: 2022/10/31 14:09:04 by gkehren          ###   ########.fr        #
+#    Updated: 2022/10/31 16:53:49 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCPATH:=srcs/
 HDRPATH:=include/
 CCHPATH:=obj/
 IFLAGS:=-I ${HDRPATH}
-CFLAGS:=-Wall -Wextra -Werror -g3 ${IFLAGS}
+CFLAGS:=-Wall -Wextra -Werror -g3 -pthread ${IFLAGS}
 # ==================
 
 # ----- Colors -----
