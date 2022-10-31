@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:36:45 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 11:05:43 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 14:26:08 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	nbr;
-	int	sign;
+	int		i;
+	long	nbr;
+	int		sign;
 
 	i = 0;
 	nbr = 0;

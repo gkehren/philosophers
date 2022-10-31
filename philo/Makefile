@@ -6,21 +6,21 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 15:39:29 by gkehren           #+#    #+#              #
-#    Updated: 2022/10/29 16:17:08 by gkehren          ###   ########.fr        #
+#    Updated: 2022/10/31 14:09:04 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES:=	philo init utils state
+FILES:=	philo init utils state waiter
 
 NAME:= philo
 
 # ------------------
-CC:=clang
+CC:=gcc
 SRCPATH:=srcs/
 HDRPATH:=include/
 CCHPATH:=obj/
 IFLAGS:=-I ${HDRPATH}
-CFLAGS:=-Wall -Wextra -Werror -g3 -pthread ${IFLAGS}
+CFLAGS:=-Wall -Wextra -Werror -g3 ${IFLAGS}
 # ==================
 
 # ----- Colors -----

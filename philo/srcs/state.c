@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 16:15:48 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 11:41:28 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/10/31 14:39:08 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,31 @@ long	get_time_interval(long old_timestamp)
 	return (time_interval);
 }
 
-void	print_state(t_philo *philo)
+void	print_state(t_philo *philo, int status)
 {
-	if (philo->status == HAS_TAKEN_A_FORK)
-		printf("%ld %d has taken a fork\n",
-			get_time_interval(philo->table->timer), philo->philo_num);
-	else if (philo->status == EATING)
-		printf("%ld %d is eating\n",
-			get_time_interval(philo->table->timer), philo->philo_num);
-	else if (philo->status == SLEEPING)
-		printf("%ld %d is sleeping\n",
-			get_time_interval(philo->table->timer), philo->philo_num);
-	else if (philo->status == THINKING)
-		printf("%ld %d is thinking\n",
-			get_time_interval(philo->table->timer), philo->philo_num);
-	else if (philo->status == DIED)
-		printf("%ld %d died\n",
-			get_time_interval(philo->table->timer), philo->philo_num);
-}
+	long	time;
 
-void	set_state(t_philo *philo)
-{
-	if (philo->philo_num == 1)
-		philo->status = EATING;
-	else if (philo->philo_num == 2)
-		philo->status = SLEEPING;
-	else if (philo->philo_num == 3)
-		philo->status = THINKING;
+	pthread_mutex_lock(&(philo->table->microphone));
+	time = get_time_interval(philo->table->timer);
+	if (status == DIED && !philo->table->waiter.close_the_place)
+	{
+		philo->table->waiter.close_the_place = 1;
+		printf("\033[31m%ld\t%d died\n\033[00m", time, philo->philo_num);
+	}
+	if (!philo->table->waiter.close_the_place)
+	{
+		if (status == EATING)
+		{
+			philo->last_meal = get_timestamp();
+			printf("\033[32m%ld\t%d is eating\n\033[00m", time, philo->philo_num);
+		}
+		else if (status == SLEEPING)
+			printf("\033[35m%ld\t%d is sleeping\n\033[00m", time, philo->philo_num);
+		else if (status == THINKING)
+			printf("\033[34m%ld\t%d is thinking\n\033[00m", time, philo->philo_num);
+		else if (status == HAS_TAKEN_A_FORK)
+			printf("\033[33m%ld\t%d has taken a fork\n\033[00m", time, \
+			philo->philo_num);
+	}
+	pthread_mutex_unlock(&(philo->table->microphone));
 }
