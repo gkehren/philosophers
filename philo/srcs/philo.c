@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:40:19 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 17:20:52 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/07 01:41:13 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	philosopher(t_philo *philo)
 			return (printf("Failed to create the thread\n"), exit(1));
 		i++;
 	}
-	if (pthread_create(&philo->table->waiter.thread, NULL, is_spotless, philo))
+	if (pthread_create(&philo->table->waiter.thread, NULL, waiter, philo))
 		return (printf("Failed to create the thread\n"), exit(1));
 	i = 0;
 	while (i < philo->table->num_of_philos)

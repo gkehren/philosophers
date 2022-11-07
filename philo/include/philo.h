@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 15:39:59 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 17:20:25 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/07 01:46:33 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ enum e_state {
 typedef struct s_waiter
 {
 	pthread_t	thread;
-	int			sink_capacity;
+	int			table_capacity;
 	int			close_the_place;
 }				t_waiter;
 
@@ -69,7 +69,7 @@ typedef struct s_philo
 
 int		init(t_philo **philo, t_table *table, char **argv);
 void	*routine(void *arg);
-void	*is_spotless(void *arg);
+void	*waiter(void *arg);
 void	print_state(t_philo *philo, int status);
 
 /*******TIME*******/

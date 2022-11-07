@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 01:32:00 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 17:17:36 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/07 01:46:31 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	init_table(t_table *table, char **argv)
 	else
 		table->times_must_eat = -1;
 	table->waiter.close_the_place = 0;
-	table->waiter.sink_capacity = table->num_of_philos * table->times_must_eat;
+	table->waiter.table_capacity = table->num_of_philos * table->times_must_eat;
 	table->timer = get_timestamp();
 	return (0);
 }

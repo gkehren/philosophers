@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:03:34 by gkehren           #+#    #+#             */
-/*   Updated: 2022/10/31 14:05:59 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/07 01:46:25 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_dead(t_table *table, long last_meal)
 	return (1);
 }
 
-void	*is_spotless(void *arg)
+void	*waiter(void *arg)
 {
 	t_philo	*philo;
 	int		i;
@@ -33,7 +33,7 @@ void	*is_spotless(void *arg)
 		{
 			if (!is_dead(philo->table, philo[i].last_meal))
 				print_state(&philo[i], DIED);
-			if (!(philo->table->waiter.sink_capacity) && \
+			if (!(philo->table->waiter.table_capacity) && \
 			philo->table->times_must_eat)
 				philo->table->waiter.close_the_place = 1;
 		}
