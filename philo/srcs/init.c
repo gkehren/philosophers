@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 01:32:00 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/08 14:18:19 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/08 14:36:46 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static int	init_table(t_table *table, char **argv)
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
-	if (table->num_of_philos < 1 || table->time_to_die < 0
-		|| table->time_to_eat < 0 || table->time_to_sleep < 0)
+	if (table->num_of_philos < 1 || table->time_to_die < 1
+		|| table->time_to_eat < 1 || table->time_to_sleep < 1)
 		return (write(2, "Error: incorrect argument\n", 27), 1);
 	if (argv[5])
 	{
